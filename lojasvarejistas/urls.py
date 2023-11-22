@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from lojasvarejistasapp.views import home
+from lojasvarejistasapp.views import home, form
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home),
+    path('form/', form),
+
 
 ]
