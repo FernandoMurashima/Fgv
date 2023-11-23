@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from lojasvarejistasapp.forms import CarrosForm
 
 # Create your views here.
 
@@ -7,4 +7,12 @@ def home(request):
     return render(request, 'index.html')
 
 def form(request):
-    return render(request, 'form.html')
+    data ={}
+    data['form'] = CarrosForm()
+    return render(request, 'form.html', data)
+
+def create(request):
+    form = CarrosForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('home')
